@@ -1,0 +1,6 @@
+interface:
+  display_name: "Image Knowledge Base"
+  short_description: "Auto-maintain image-heavy knowledge bases"
+
+policy:
+  allow_implicit_invocation: true
