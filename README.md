@@ -6,8 +6,12 @@ It helps Codex:
 
 - keep original images untouched
 - create lightweight compressed preview copies before analysis
-- process images in small batches
+- process folders one at a time
+- create contact-sheet/collage overviews before opening individual images
+- build light first-pass indexes without reading every page
+- fall back to small detailed batches only when requested
 - update local Markdown indexes
+- verify moved-path Markdown links
 - avoid large-context failures when working with many images
 
 ## Install
@@ -28,10 +32,25 @@ You do not need to invoke the skill with a rigid prompt. Natural requests such a
 - "Update my knowledge base"
 - "Organize this new image folder"
 - "Compress the new images first"
+- "Make a collage overview"
+- "Just index it roughly first"
 - "Scan new materials and update the index"
 - "Process these images in small batches"
 
 ## Default Behavior
+
+The default mode is light indexing:
+
+1. Identify target folders and existing indexes.
+2. Count files and gather metadata.
+3. Prefer a contact sheet/collage overview when a collage tool is available.
+4. Open only a few key originals, such as cover, table of contents, section divider, and final/action page.
+5. Create or update the nearest local index with scope, count, rough sections, quick lookup, keywords, and follow-up rules.
+6. Update parent/root indexes only when structure, global entry points, counts, keywords, or moved paths changed.
+
+Use detailed page-by-page batches only when the user explicitly asks for detailed analysis.
+
+## Compression
 
 The skill expects a local knowledge-base folder. When it finds images, it creates compressed copies in:
 
