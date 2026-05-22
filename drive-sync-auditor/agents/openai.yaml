@@ -1,0 +1,6 @@
+interface:
+  display_name: "Drive Sync Auditor"
+  short_description: "Compare local and Drive knowledge bases safely"
+
+policy:
+  allow_implicit_invocation: true
