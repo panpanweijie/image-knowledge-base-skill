@@ -1,0 +1,6 @@
+interface:
+  display_name: "Image Batch Recognizer"
+  short_description: "Recognize image folders in resumable small batches"
+
+policy:
+  allow_implicit_invocation: true
