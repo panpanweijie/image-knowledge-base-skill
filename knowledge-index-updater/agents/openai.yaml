@@ -1,0 +1,6 @@
+interface:
+  display_name: "Knowledge Index Updater"
+  short_description: "Update local knowledge-base indexes"
+
+policy:
+  allow_implicit_invocation: true
