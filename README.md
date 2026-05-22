@@ -1,6 +1,6 @@
-# Image Knowledge Base Skill
+# Image Knowledge Base Skills
 
-A Codex skill for maintaining image-heavy local knowledge bases without overwhelming the conversation context.
+A small Codex skill set for maintaining image-heavy local knowledge bases without overwhelming the conversation context.
 
 It helps Codex:
 
@@ -13,14 +13,24 @@ It helps Codex:
 - update local Markdown indexes
 - verify moved-path Markdown links
 - avoid large-context failures when working with many images
+- compare local and Google Drive copies safely
+- generate and QA contact sheets before image recognition
+
+## Skills
+
+- `image-knowledge-base`: main workflow for image-heavy knowledge-base maintenance.
+- `image-contact-sheet-qa`: find missing collages, generate contact sheets, and check HEIC/white-thumbnail failures.
+- `image-batch-recognizer`: recognize images in small resumable batches with local checkpoints.
+- `knowledge-index-updater`: update local Markdown indexes, keywords, topic maps, and link checks.
+- `drive-sync-auditor`: compare local and Drive copies, then copy/package only missing local files.
 
 ## Install
 
-Copy the skill folder into your Codex skills directory:
+Copy the skill folders into your Codex skills directory:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R image-knowledge-base ~/.codex/skills/
+cp -R image-knowledge-base image-contact-sheet-qa image-batch-recognizer knowledge-index-updater drive-sync-auditor ~/.codex/skills/
 ```
 
 Restart Codex after installing.
@@ -74,6 +84,8 @@ Original files are never overwritten.
 
 ## Script
 
+Image compression:
+
 Run from the knowledge-base root:
 
 ```bash
@@ -96,6 +108,21 @@ Use a custom compressed directory:
 
 ```bash
 python ~/.codex/skills/image-knowledge-base/scripts/sync_compressed_images.py . --compressed-dir _compressed_2048_q95
+```
+
+Drive diff/package:
+
+```bash
+python ~/.codex/skills/drive-sync-auditor/scripts/drive_diff_package.py \
+  --local /path/to/local/知识库 \
+  --drive /path/to/GoogleDrive/我的云端硬盘/知识库 \
+  --package-only
+```
+
+Image batch recognition:
+
+```bash
+python ~/.codex/skills/image-batch-recognizer/scripts/init_image_batch.py /path/to/image-folder --batch-size 5
 ```
 
 ## Notes
